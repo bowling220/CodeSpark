@@ -5,21 +5,19 @@ function isMobileDevice() {
 
 // Add this check at the start of the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if it's a mobile device
+    // Check if it's a mobile device first
     if (isMobileDevice()) {
-        // Hide navigation
+        // Hide all course-related content
         document.querySelector('.nav-container').style.display = 'none';
-        // Show mobile restriction
         document.querySelector('.mobile-restriction').style.display = 'block';
-        // Hide course content
         document.querySelector('#authContainer').style.display = 'none';
         document.querySelector('#courseContent').style.display = 'none';
-    } else {
-        // Desktop behavior
-        document.querySelector('.mobile-restriction').style.display = 'none';
+        
+        // Prevent any authentication or course content from showing even if logged in
+        return; // Exit early to prevent Firebase initialization on mobile
     }
 
-    // Check if Firebase SDK is loaded
+    // Continue with Firebase initialization only on desktop
     if (typeof firebase === 'undefined') {
         console.error('Firebase SDK not loaded');
         alert('Error loading authentication system. Please try again later.');
