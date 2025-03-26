@@ -23,7 +23,17 @@ header {
 }
 
 .animation {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 20px 0;
+}
+
+.animation img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Ensures no extra space below the image */
 }
 
 button {
@@ -153,8 +163,14 @@ footer {
 
     .animation {
         float: none;
-        margin: 20px auto !important;
-        width: 90%;
+        margin: 20px auto;
+        width: 85%; /* Slightly reduced from 90% to account for padding */
+        padding: 15px;
+    }
+
+    .animation img {
+        width: 100%;
+        object-fit: contain; /* Ensures the GIF maintains its aspect ratio */
     }
 
     .footer-content {
