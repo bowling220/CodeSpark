@@ -276,18 +276,22 @@ img {
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    text-align: center; /* Center all content in card */
 }
 
 .course-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .course-card img {
-    width: 100%;
-    height: 160px;
+    width: 160px; /* Fixed width */
+    height: 160px; /* Fixed height to maintain perfect circle */
     object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    border-radius: 50%; /* Makes the image circular */
+    margin: 15px auto; /* Center the circle and add margin */
+    display: block; /* Helps with centering */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds depth */
 }
 
 .course-card h3 {
@@ -445,4 +449,375 @@ img {
 .back-button i {
     margin-right: 10px;
     font-size: 18px; /* Make the icon slightly larger */
+}
+
+/* Add these new styles for the course page */
+.course-content-wrapper {
+    display: flex;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.course-sidebar {
+    width: 280px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+}
+
+.course-modules {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.course-modules li {
+    margin: 10px 0;
+}
+
+.course-modules a {
+    display: block;
+    padding: 12px 15px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.course-modules li.active a {
+    background: #008fa2;
+    color: white;
+}
+
+.course-modules a:hover {
+    background: #e9ecef;
+}
+
+.course-main-content {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.progress-tracker {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: #008fa2;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.video-container {
+    margin: 30px 0;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.practice-area {
+    margin: 30px 0;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.code-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.html-input {
+    width: 100%;
+    height: 200px;
+    padding: 15px;
+    font-family: monospace;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    resize: vertical;
+}
+
+.run-code {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.run-code:hover {
+    background: #218838;
+}
+
+.preview-pane {
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.result-frame {
+    width: 100%;
+    height: 200px;
+    border: none;
+    background: white;
+}
+
+.lesson-navigation {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.next-lesson {
+    background: #008fa2;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.next-lesson:hover {
+    background: #007a8c;
+}
+
+@media (max-width: 768px) {
+    .course-content-wrapper {
+        flex-direction: column;
+    }
+
+    .course-sidebar {
+        width: 100%;
+        position: static;
+    }
+}
+
+/* Add these new styles for the enhanced homepage */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.hero-content {
+    flex: 1;
+    text-align: left;
+    padding-right: 40px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.hero-text {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.cta-button {
+    background: #005f73;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #004c5e;
+    transform: translateY(-2px);
+}
+
+.features-section {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 60px 20px;
+    margin: 40px 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.feature-card {
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: #008fa2;
+    margin-bottom: 20px;
+}
+
+.popular-courses {
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 40px 0;
+}
+
+.courses-preview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.course-preview-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.course-preview-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    object-fit: cover;
+}
+
+.view-all-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #008fa2;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.testimonials {
+    padding: 60px 20px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-content i {
+    font-size: 2rem;
+    color: #008fa2;
+    margin-bottom: 20px;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.testimonial-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.cta-section {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 60px 20px;
+    margin: 40px 0;
+    text-align: center;
+}
+
+.cta-section h2 {
+    margin-bottom: 20px;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .features-grid,
+    .courses-preview,
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
 }
