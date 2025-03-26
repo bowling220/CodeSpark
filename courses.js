@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const loginBtn = document.getElementById('loginBtn');
         const signupBtn = document.getElementById('signupBtn');
         const logoutBtn = document.getElementById('logoutBtn');
+        const profileContainer = document.getElementById('profileContainer');
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDropdown = document.getElementById('profileDropdown');
 
         // Auth state observer
         auth.onAuthStateChanged((user) => {
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function updateNavigation(isLoggedIn) {
             loginBtn.style.display = isLoggedIn ? 'none' : 'block';
             signupBtn.style.display = isLoggedIn ? 'none' : 'block';
-            logoutBtn.style.display = isLoggedIn ? 'block' : 'none';
+            profileContainer.style.display = isLoggedIn ? 'block' : 'none';
         }
 
         // Make auth functions globally available
@@ -90,9 +93,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
 
-        // Logout function
+        // Add profile dropdown functionality
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileContainer.contains(e.target)) {
+                profileDropdown.classList.remove('show');
+            }
+        });
+
+        // Update the logout button event listener
         logoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            profileDropdown.classList.remove('show');
             auth.signOut()
                 .then(() => {
                     console.log('Logged out successfully');

@@ -40,9 +40,23 @@
                 <a href="#" id="signupBtn" class="auth-btn">
                     <i class="fas fa-user-plus"></i> Sign Up
                 </a>
-                <a href="#" id="logoutBtn" class="auth-btn" style="display: none;">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
+                <div class="profile-container" id="profileContainer" style="display: none;">
+                    <button class="profile-btn" id="profileBtn">
+                        <i class="fas fa-user-circle"></i> Profile
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
