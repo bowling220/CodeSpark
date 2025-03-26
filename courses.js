@@ -1,5 +1,12 @@
-// Wait for Firebase SDK to load
+// Add this check at the start of the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if Firebase SDK is loaded
+    if (typeof firebase === 'undefined') {
+        console.error('Firebase SDK not loaded');
+        alert('Error loading authentication system. Please try again later.');
+        return;
+    }
+
     // Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyBtfvkNfFOiFTq0Q5vF7niqeuvDMo9Cx2c",
