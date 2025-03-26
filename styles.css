@@ -131,7 +131,7 @@ footer {
     color: white;
     font-size: 24px;
     cursor: pointer;
-    padding: 10px;
+    padding: 8px;
 }
 
 @media screen and (max-width: 768px) {
@@ -140,7 +140,7 @@ footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        width: 96%;
         padding: 0 8px;
     }
 
@@ -233,7 +233,7 @@ footer {
 
     button#getStarted {
         position: absolute;
-        left: 50%;
+        left: 10%;
         transform: translateX(-50%);
     }
 }
