@@ -77,3 +77,67 @@ footer {
     margin-top: auto;
     width: 100%;
 }
+
+/* Add responsive navigation styles */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none !important; /* Hide the regular nav */
+    }
+    
+    .mobile-nav-toggle {
+        display: block !important;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        color: white;
+        padding: 10px;
+        margin-right: 10px;
+    }
+
+    .nav-links.active {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: #008fa2;
+        padding: 20px;
+        gap: 15px !important;
+    }
+
+    .animation {
+        float: none !important;
+        margin: 20px auto !important;
+        max-width: 90% !important;
+    }
+
+    .animation img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .footer-content {
+        flex-direction: column !important;
+        gap: 15px;
+        padding: 15px !important;
+    }
+
+    .social-icons {
+        justify-content: center !important;
+    }
+}
+
+/* Add these new mobile-friendly base styles */
+.mobile-nav-toggle {
+    display: none;
+}
+
+.nav-links a {
+    white-space: nowrap;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
