@@ -17,11 +17,15 @@
             margin-top: 20px;
             position: relative;
             z-index: 1;
+            max-width: 100px; /* Added max-width to constrain container */
+            margin-left: auto;
+            margin-right: auto;
         }
         .animation img {
             max-width: 100%;
             height: auto;
             display: block;
+            width: 100px; /* Set a fixed width */
         }
         .mobile-nav-toggle {
             display: none;
@@ -39,6 +43,9 @@
         @media screen and (max-width: 768px) {
             .mobile-nav-toggle {
                 display: block;
+            }
+            .animation {
+                display: none; /* Hide the entire animation container on mobile */
             }
         }
     </style>
