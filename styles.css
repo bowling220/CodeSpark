@@ -233,9 +233,8 @@ footer {
     }
 
     button#getStarted {
-        position: absolute;
-        left: 10%;
-        transform: translateX(-50%);
+        position: static;
+        transform: none;
     }
 }
 
@@ -644,8 +643,8 @@ img {
 
 .hero-content {
     flex: 1;
-    text-align: left;
-    padding-right: 40px;
+    text-align: center;
+    padding-right: 0;
 }
 
 .hero-content h1 {
@@ -669,6 +668,8 @@ img {
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin: 0 auto;
+    display: inline-block;
 }
 
 .cta-button:hover {
