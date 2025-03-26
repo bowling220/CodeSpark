@@ -23,17 +23,21 @@ header {
 }
 
 .animation {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
+    margin: 20px auto;
+    max-width: 800px; /* Set a maximum width */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .animation img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    display: block; /* Ensures no extra space below the image */
+    display: block;
+    max-width: 100%;
 }
 
 button {
@@ -162,15 +166,14 @@ footer {
     }
 
     .animation {
-        float: none;
-        margin: 20px auto;
-        width: 85%; /* Slightly reduced from 90% to account for padding */
+        width: 90%;
         padding: 15px;
+        margin: 20px auto;
+        float: none;
     }
 
-    .animation img {
-        width: 100%;
-        object-fit: contain; /* Ensures the GIF maintains its aspect ratio */
+    .content-wrapper {
+        display: block; /* Remove flex display on mobile */
     }
 
     .footer-content {
@@ -196,16 +199,15 @@ footer {
     }
 
     .animation {
-        float: right;
+        width: 60%; /* Reduce width for desktop */
         margin-right: 50px;
-        margin-top: 20px;
-        width: auto;
+        float: right;
     }
 
     .content-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
         padding: 20px;
     }
 
