@@ -28,8 +28,9 @@ header {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
-    max-width: 800px; /* Set a maximum width */
-    width: 100%;
+    position: relative;
+    z-index: 1;
+    width: 60%;
     box-sizing: border-box;
 }
 
@@ -166,10 +167,7 @@ footer {
     }
 
     .animation {
-        width: 90%;
-        padding: 15px;
-        margin: 20px auto;
-        float: none;
+        display: none; /* This will hide the GIF on mobile */
     }
 
     .content-wrapper {
@@ -199,7 +197,8 @@ footer {
     }
 
     .animation {
-        width: 60%; /* Reduce width for desktop */
+        display: block; /* Ensure animation is visible on desktop */
+        width: 60%;
         margin-right: 50px;
         float: right;
     }
