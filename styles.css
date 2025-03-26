@@ -123,10 +123,30 @@ footer {
     gap: 20px;
 }
 
-/* Update the media query section */
+/* Fix the mobile nav toggle base styles - move this to the top section */
+.mobile-nav-toggle {
+    display: none; /* Hidden by default for desktop */
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Update the mobile media query */
 @media screen and (max-width: 768px) {
     .nav-container {
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .mobile-nav-toggle {
+        display: block !important; /* Force display on mobile */
+        z-index: 100;
     }
 
     .nav-links {
@@ -137,6 +157,7 @@ footer {
         left: 0;
         background: #008fa2;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 99;
     }
 
     .nav-links.active {
@@ -154,16 +175,6 @@ footer {
 
     .nav-links a:last-child {
         border-bottom: none;
-    }
-
-    .mobile-nav-toggle {
-        display: block;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 10px;
     }
 
     .animation {
@@ -215,15 +226,6 @@ footer {
         left: 50%;
         transform: translateX(-50%);
     }
-}
-
-/* Add these new mobile-friendly base styles */
-.mobile-nav-toggle {
-    display: none;
-}
-
-.nav-links a {
-    white-space: nowrap;
 }
 
 img {
