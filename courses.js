@@ -1,5 +1,24 @@
+// Add this function at the start of your courses.js file
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 // Add this check at the start of the DOMContentLoaded event
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if it's a mobile device
+    if (isMobileDevice()) {
+        // Hide navigation
+        document.querySelector('.nav-container').style.display = 'none';
+        // Show mobile restriction
+        document.querySelector('.mobile-restriction').style.display = 'block';
+        // Hide course content
+        document.querySelector('#authContainer').style.display = 'none';
+        document.querySelector('#courseContent').style.display = 'none';
+    } else {
+        // Desktop behavior
+        document.querySelector('.mobile-restriction').style.display = 'none';
+    }
+
     // Check if Firebase SDK is loaded
     if (typeof firebase === 'undefined') {
         console.error('Firebase SDK not loaded');
