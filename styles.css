@@ -78,14 +78,51 @@ footer {
     width: 100%;
 }
 
-/* Add responsive navigation styles */
+/* First, let's move inline styles to CSS */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo h1 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+/* Update the media query section */
 @media screen and (max-width: 768px) {
     .nav-links {
-        display: none !important; /* Hide the regular nav */
+        display: none;
     }
     
     .mobile-nav-toggle {
-        display: block !important;
+        display: block;
         font-size: 1.5rem;
         background: none;
         border: none;
@@ -95,7 +132,7 @@ footer {
     }
 
     .nav-links.active {
-        display: flex !important;
+        display: flex;
         flex-direction: column;
         position: absolute;
         top: 60px;
@@ -103,28 +140,56 @@ footer {
         right: 0;
         background: #008fa2;
         padding: 20px;
-        gap: 15px !important;
+        gap: 15px;
+        z-index: 1000;
     }
 
     .animation {
-        float: none !important;
-        margin: 20px auto !important;
-        max-width: 90% !important;
-    }
-
-    .animation img {
-        max-width: 100%;
-        height: auto;
+        float: none;
+        margin: 20px auto;
+        max-width: 90%;
     }
 
     .footer-content {
-        flex-direction: column !important;
+        flex-direction: column;
         gap: 15px;
-        padding: 15px !important;
+        padding: 15px;
+        text-align: center;
     }
 
     .social-icons {
-        justify-content: center !important;
+        justify-content: center;
+    }
+}
+
+/* Desktop-specific styles */
+@media screen and (min-width: 769px) {
+    .mobile-nav-toggle {
+        display: none;
+    }
+
+    .nav-links {
+        display: flex !important;
+    }
+
+    .animation {
+        float: right;
+        margin-right: 50px;
+        margin-top: 20px;
+        width: auto;
+    }
+
+    .content-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    button#getStarted {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
