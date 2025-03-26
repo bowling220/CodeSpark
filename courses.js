@@ -7,13 +7,14 @@ function isMobileDevice() {
 document.addEventListener('DOMContentLoaded', function() {
     // Check if it's a mobile device first
     if (isMobileDevice()) {
-        // Hide all course-related content
-        document.querySelector('.nav-container').style.display = 'none';
+        // Only hide course-related content
         document.querySelector('.mobile-restriction').style.display = 'block';
         document.querySelector('#authContainer').style.display = 'none';
         document.querySelector('#courseContent').style.display = 'none';
         
-        // Prevent any authentication or course content from showing even if logged in
+        // Don't hide the nav container anymore
+        // Removed: document.querySelector('.nav-container').style.display = 'none';
+        
         return; // Exit early to prevent Firebase initialization on mobile
     }
 
