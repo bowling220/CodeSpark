@@ -1,5 +1,5 @@
 document.getElementById('getStarted').addEventListener('click', function() {
-    alert('Welcome to CodeSpark! Let\'s start coding!');
+    window.location.href = 'courses.html';
 });
 
 // Mobile navigation functionality
