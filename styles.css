@@ -5,6 +5,14 @@ body {
     background-color: #a6dce0; /* Light teal background to match */
     color: #1f3b4d;
     text-align: center;
+    background-image: url('Background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -39,25 +47,7 @@ footer {
     background: #1f3b4d; /* Deep navy blue for contrast */
     color: white;
 }
-body {
-    background-image: url('Background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-.animation {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    float: right;
-    margin-right: 50px;
-    margin-top: 20px;
-}
+
 main {
     flex: 1;
     display: flex;
@@ -65,14 +55,17 @@ main {
     align-items: center;
     padding: 20px;
 }
+
 .content-wrapper {
     width: 100%;
     max-width: 1200px;
     position: relative;
 }
+
 button {
     margin-top: 30px;
 }
+
 footer {
     margin-top: auto;
     width: 100%;
@@ -117,37 +110,51 @@ footer {
 
 /* Update the media query section */
 @media screen and (max-width: 768px) {
+    .nav-container {
+        position: relative;
+    }
+
     .nav-links {
         display: none;
-    }
-    
-    .mobile-nav-toggle {
-        display: block;
-        font-size: 1.5rem;
-        background: none;
-        border: none;
-        color: white;
-        padding: 10px;
-        margin-right: 10px;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #008fa2;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .nav-links.active {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: #008fa2;
-        padding: 20px;
-        gap: 15px;
-        z-index: 1000;
+        padding: 10px 0;
+    }
+
+    .nav-links a {
+        padding: 15px 20px;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 10px;
     }
 
     .animation {
         float: none;
-        margin: 20px auto;
-        max-width: 90%;
+        margin: 20px auto !important;
+        width: 90%;
     }
 
     .footer-content {
