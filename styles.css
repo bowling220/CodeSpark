@@ -142,6 +142,7 @@ footer {
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        padding: 0 15px; /* Reduce padding on mobile */
     }
 
     .mobile-nav-toggle {
@@ -151,13 +152,15 @@ footer {
 
     .nav-links {
         display: none;
-        width: 100%;
+        width: calc(100% - 30px); /* Adjust width to account for padding */
         position: absolute;
         top: 100%;
-        left: 0;
+        left: 15px; /* Match the container padding */
+        right: 15px; /* Ensure it doesn't overflow on the right */
         background: #008fa2;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         z-index: 99;
+        border-radius: 0 0 8px 8px; /* Optional: adds rounded corners to bottom */
     }
 
     .nav-links.active {
