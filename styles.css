@@ -142,25 +142,23 @@ footer {
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        padding: 0 15px; /* Reduce padding on mobile */
+        padding: 0 8px; /* Reduced from 15px to 8px */
     }
 
     .mobile-nav-toggle {
-        display: block !important; /* Force display on mobile */
-        z-index: 100;
+        padding-right: 8px; /* Reduced padding */
     }
 
     .nav-links {
-        display: none;
-        width: calc(100% - 30px); /* Adjust width to account for padding */
+        width: calc(100% - 16px); /* Adjusted to match new container padding */
         position: absolute;
         top: 100%;
-        left: 15px; /* Match the container padding */
-        right: 15px; /* Ensure it doesn't overflow on the right */
+        left: 8px; /* Reduced from 15px to 8px */
+        right: 8px;
         background: #008fa2;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         z-index: 99;
-        border-radius: 0 0 8px 8px; /* Optional: adds rounded corners to bottom */
+        border-radius: 0 0 8px 8px;
     }
 
     .nav-links.active {
