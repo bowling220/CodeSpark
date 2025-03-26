@@ -436,3 +436,37 @@ img {
         display: none !important;
     }
 }
+
+/* Add these styles for the back button */
+.back-button {
+    display: none; /* Hidden by default */
+    background: #008fa2;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 20px auto 0;
+    text-decoration: none;
+}
+
+.back-button i {
+    margin-right: 8px;
+}
+
+@media screen and (max-width: 768px) {
+    /* Hide nav on courses page */
+    .courses-page .nav-container {
+        display: none;
+    }
+
+    .back-button {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .mobile-restriction {
+        margin-top: 20px;
+    }
+}
