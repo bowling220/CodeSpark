@@ -14,6 +14,14 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .animation img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
         .mobile-nav-toggle {
             display: none;
@@ -23,6 +31,10 @@
             font-size: 1.5rem;
             margin: 0;
             padding: 5px;
+        }
+        header {
+            position: relative;
+            z-index: 2;
         }
         @media screen and (max-width: 768px) {
             .mobile-nav-toggle {
@@ -62,7 +74,7 @@
     <main>
         <div class="content-wrapper">
             <div class="animation">
-                <img src="HomePage.gif" alt="CodeSpark Animation">
+                <img src="HomePage.gif" alt="CodeSpark Animation" width="800" height="auto">
             </div>
             <button id="getStarted">Get Started</button>
         </div>
