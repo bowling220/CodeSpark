@@ -242,3 +242,81 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+/* Add these new styles to your existing styles.css */
+
+.auth-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.course-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+.course-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.course-card h3 {
+    margin: 10px 0;
+    color: #1f3b4d;
+}
+
+.course-card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.auth-btn {
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+    .courses-grid {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+    
+    .auth-container {
+        margin: 20px;
+        padding: 20px;
+    }
+}
