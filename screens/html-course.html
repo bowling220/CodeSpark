@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Fundamentals - CodeSpark</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/HTMLstyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+    <link rel="preload" href="images/background.png" as="image">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <div class="logo">
+                <h1><i class="fas fa-code"></i> CodeSpark</h1>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="courses.html"><i class="fas fa-book"></i> Courses</a>
+                <a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="community.html"><i class="fas fa-users"></i> Community</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="course-content-wrapper">
+        <div class="course-sidebar">
+            <div class="skill-tree">
+                <h3>Course Modules</h3>
+                <div class="skill-nodes">
+                    <div class="skill-node" data-module="0">
+                        <i class="fas fa-circle"></i>
+                        <span>1. What is HTML?</span>
+                    </div>
+                    <div class="skill-node locked" data-module="1">
+                        <i class="fas fa-lock"></i>
+                        <span>2. HTML Basics</span>
+                    </div>
+                    <div class="skill-node locked" data-module="2">
+                        <i class="fas fa-lock"></i>
+                        <span>3. Working with Text</span>
+                    </div>
+                    <div class="skill-node locked" data-module="3">
+                        <i class="fas fa-lock"></i>
+                        <span>4. Lists & Links</span>
+                    </div>
+                    <div class="skill-node locked" data-module="4">
+                        <i class="fas fa-lock"></i>
+                        <span>5. Images & Media</span>
+                    </div>
+                    <div class="skill-node locked" data-module="5">
+                        <i class="fas fa-lock"></i>
+                        <span>6. Tables & Forms</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-progress">
+                <h3>Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 0%"></div>
+                </div>
+                <span class="progress-text">0% Complete</span>
+            </div>
+        </div>
+
+        <div class="course-main-content">
+            <div class="lesson-header">
+                <h2>HTML Tags and Elements</h2>
+                <div class="lesson-stats">
+                    <span><i class="fas fa-clock"></i> 15 mins</span>
+                    <span><i class="fas fa-star"></i> 50 XP</span>
+                </div>
+            </div>
+
+            <div class="lesson-content">
+                <div class="theory-section">
+                    <h3>What are HTML Tags?</h3>
+                    <p class="theory-text">HTML tags are the building blocks of web pages.</p>
+                    
+                    <div class="example-box">
+                        <h4>Example:</h4>
+                        <code class="example-code">&lt;h1&gt;This is a heading&lt;/h1&gt;</code>
+                    </div>
+                </div>
+
+                <div class="practice-section">
+                    <h3>Practice Exercise</h3>
+                    <p class="instructions">Create a paragraph tag with the text "Hello World!"</p>
+                    
+                    <div class="code-editor">
+                        <div class="editor-toolbar">
+                            <button class="reset-code"><i class="fas fa-undo"></i> Reset</button>
+                            <button class="run-code"><i class="fas fa-play"></i> Run Code</button>
+                        </div>
+                        <textarea class="html-input" placeholder="Type your HTML here..."></textarea>
+                    </div>
+                    
+                    <div class="preview-pane">
+                        <h4>Output:</h4>
+                        <div class="result-frame"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lesson-navigation">
+                <button class="prev-lesson"><i class="fas fa-arrow-left"></i> Previous</button>
+                <button class="next-lesson">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="../firebase-config.js"></script>
+    <script src="../auth.js"></script>
+    <script src="../html-course.js"></script>
+</body>
+</html>

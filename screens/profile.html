@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSpark - Profile</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/HTMLstyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <div class="logo">
+                <h1><i class="fas fa-code"></i> CodeSpark</h1>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="courses.html"><i class="fas fa-book"></i> Courses</a>
+                <a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="community.html"><i class="fas fa-users"></i> Community</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content-wrapper profile-page">
+        <div class="profile-grid">
+            <div class="profile-sidebar">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <img src="https://via.placeholder.com/150" alt="Profile Picture" id="profilePicture">
+                        <button class="edit-avatar-btn"><i class="fas fa-camera"></i></button>
+                    </div>
+                    <h2 id="profileName">User Name</h2>
+                    <p id="userEmail">user@example.com</p>
+                    <div class="profile-stats">
+                        <div class="stat">
+                            <span class="stat-value" id="coursesCompleted">0</span>
+                            <span class="stat-label">Courses Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" id="projectsDone">0</span>
+                            <span class="stat-label">Projects Done</span>
+                        </div>
+                    </div>
+                </div>
+                <nav class="profile-nav">
+                    <a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a>
+                    <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                    <button id="logoutBtn" class="nav-button">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </nav>
+            </div>
+            <div class="profile-content">
+                <section class="progress-section">
+                    <h3>Learning Progress</h3>
+                    <div class="course-progress-cards">
+                        <!-- Progress cards will be dynamically added here -->
+                    </div>
+                </section>
+                <section class="achievements-section">
+                    <h3>Achievements</h3>
+                    <div class="achievements-grid">
+                        <!-- Achievements will be dynamically added here -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+    <script src="../firebase-config.js"></script>
+    <script src="../auth.js"></script>
+    <script src="../profile.js"></script>
+</body>
+</html> 

@@ -1,5 +1,5 @@
 document.getElementById('getStarted').addEventListener('click', function() {
-    window.location.href = 'courses.html';
+    window.location.href = 'screens/courses.html';
 });
 
 // Mobile navigation functionality

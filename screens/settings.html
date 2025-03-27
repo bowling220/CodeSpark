@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSpark - Settings</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/HTMLstyles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <div class="logo">
+                <h1><i class="fas fa-code"></i> CodeSpark</h1>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="courses.html"><i class="fas fa-book"></i> Courses</a>
+                <a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="community.html"><i class="fas fa-users"></i> Community</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+                <div class="profile-container">
+                    <button class="profile-btn" id="profileBtn">
+                        <i class="fas fa-user"></i>
+                        <span id="userDisplayName">Profile</span>
+                    </button>
+                    <div class="profile-dropdown" id="profileDropdown">
+                        <a href="profile.html" class="dropdown-item">
+                            <i class="fas fa-user-circle"></i> Profile
+                        </a>
+                        <a href="settings.html" class="dropdown-item">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content-wrapper settings-page">
+        <div class="settings-grid">
+            <div class="profile-sidebar">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <img src="default-avatar.png" alt="Profile Picture" id="profilePicture">
+                        <button class="edit-avatar-btn" id="editAvatarBtn"><i class="fas fa-camera"></i></button>
+                    </div>
+                    <h2 id="profileName">User Name</h2>
+                    <p id="userEmail">user@example.com</p>
+                </div>
+                <nav class="profile-nav">
+                    <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                    <a href="settings.html" class="active"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="#" id="sidebarLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </nav>
+            </div>
+            <div class="settings-content">
+                <div id="settingsMessage" class="settings-message" style="display: none;"></div>
+                
+                <section class="settings-section">
+                    <h3>Account Settings</h3>
+                    <form id="accountSettingsForm">
+                        <div class="form-group">
+                            <label for="displayName">Display Name</label>
+                            <input type="text" id="displayName" name="displayName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <button type="submit" class="save-btn">Save Changes</button>
+                    </form>
+                </section>
+                
+                <section class="settings-section">
+                    <h3>Password</h3>
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" name="currentPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" name="newPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                        <button type="submit" class="save-btn">Update Password</button>
+                    </form>
+                </section>
+
+                <section class="settings-section">
+                    <h3>Preferences</h3>
+                    <form id="preferencesForm">
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="emailNotifications" id="emailNotifications">
+                                Email Notifications
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="darkMode" id="darkMode">
+                                Dark Mode
+                            </label>
+                        </div>
+                        <button type="submit" class="save-btn">Save Preferences</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Update the script section at the bottom of the file -->
+    <script>
+        // Error handling for script loading
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('Error: ' + msg + '\nURL: ' + url + '\nLine: ' + lineNo + '\nColumn: ' + columnNo + '\nError: ' + error);
+            return false;
+        };
+    </script>
+
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    
+    <!-- Your Scripts -->
+    <script src="firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html> 

@@ -13,10 +13,6 @@ window.downloadCertificateAsPDF = function() {
     const editSection = certificateClone.querySelector('.edit-name-btn')?.parentElement;
     if (editSection) editSection.remove();
     
-    // Make sure we keep the certificate content
-    const certificateContent = certificateClone.querySelector('.certificate-content');
-    if (!certificateContent) return;
-    
     // Create a temporary container for the clone
     const container = document.createElement('div');
     container.style.cssText = `
@@ -24,14 +20,14 @@ window.downloadCertificateAsPDF = function() {
         top: 0;
         left: 0;
         width: 750px;
-        background: url('images/background.png') center center/cover no-repeat, white;
+        background: url('../images/Background.png') center center/cover no-repeat, white;
         padding: 30px;
         z-index: -9999;
     `;
     
     // Style the certificate clone for PDF
     certificateClone.style.cssText = `
-        background: url('images/background.png') center center/cover no-repeat, white;
+        background: url('../images/Background.png') center center/cover no-repeat, white;
         padding: 40px;
         text-align: center;
         width: 100%;
@@ -41,11 +37,9 @@ window.downloadCertificateAsPDF = function() {
         display: block;
     `;
     
-    // Add the clone to the container
     container.appendChild(certificateClone);
     document.body.appendChild(container);
     
-    // Wait for fonts and images to load
     setTimeout(() => {
         html2canvas(certificateClone, {
             scale: 2,
@@ -60,7 +54,7 @@ window.downloadCertificateAsPDF = function() {
                     clonedCert.style.boxShadow = 'none';
                     clonedCert.style.margin = '0';
                     clonedCert.style.padding = '40px';
-                    clonedCert.style.background = `url('images/background.png') center center/cover no-repeat, white`;
+                    clonedCert.style.background = `url('../images/Background.png') center center/cover no-repeat, white`;
                 }
             }
         }).then(canvas => {
@@ -77,22 +71,24 @@ window.downloadCertificateAsPDF = function() {
                 const pdfHeight = pdf.internal.pageSize.getHeight();
                 
                 pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                pdf.save('HTML_Course_Certificate.pdf');
+                pdf.save('CSS_Course_Certificate.pdf');
             } catch (error) {
                 console.error('PDF generation error:', error);
             }
             
-            // Clean up
             container.remove();
         }).catch(error => {
             console.error('Canvas generation failed:', error);
             alert('Failed to generate certificate. Please try again.');
             container.remove();
         });
-    }, 500); // Give time for everything to render
+    }, 500);
 };
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Check for required elements first
+    checkRequiredElements();
+    
     // DOM Elements
     const htmlInput = document.querySelector('.html-input');
     const runButton = document.querySelector('.run-code');
@@ -114,83 +110,60 @@ document.addEventListener('DOMContentLoaded', function() {
     // Lesson content
     const lessons = {
         0: {
-            title: "What is HTML?",
-            theory: "HTML (HyperText Markup Language) is the standard language used to create and structure content on the web. Every webpage you see is built using HTML as its foundation. HTML uses tags to define different types of content.",
-            example: "<!-- Basic HTML document structure -->\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>My First Webpage</title>\n  </head>\n  <body>\n    <h1>Hello World!</h1>\n  </body>\n</html>",
-            exercise: "Create an HTML comment that says 'My first HTML comment'",
-            solution: "<!-- My first HTML comment -->",
-            hint: "HTML comments start with <!-- and end with -->"
+            title: "Introduction to CSS",
+            theory: "CSS (Cascading Style Sheets) is the language used to style web pages. It works alongside HTML to control the visual presentation of content, including colors, layouts, fonts, and animations.",
+            example: "/* Basic CSS syntax */\np {\n    color: blue;\n    font-size: 16px;\n    font-weight: bold;\n}",
+            exercise: "Create a CSS rule to make all paragraphs red in color",
+            solution: "p{color:red;}",
+            hint: "Use the color property with a value of red"
         },
         1: {
-            title: "HTML Basics",
-            theory: "Every HTML document needs a basic structure including DOCTYPE, html, head, and body tags. These are the fundamental building blocks of any webpage.",
-            example: "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Page Title</title>\n  </head>\n  <body>\n    Content goes here\n  </body>\n</html>",
-            exercise: "Create a basic HTML structure with a title that says 'My Page'",
-            solution: "<!DOCTYPE html><html><head><title>My Page</title></head><body></body></html>",
-            hint: "Start with <!DOCTYPE html> and include all necessary tags"
+            title: "Styling Text",
+            theory: "CSS provides powerful tools for text styling, including properties for font families, sizes, weights, colors, and text alignment.",
+            example: "h1 {\n    font-family: Arial;\n    font-size: 24px;\n    text-align: center;\n    color: navy;\n}",
+            exercise: "Style a heading with Arial font, size 20px, and bold weight",
+            solution: "h1{font-family:Arial;font-size:20px;font-weight:bold;}",
+            hint: "Use font-family, font-size, and font-weight properties"
         },
         2: {
-            title: "Working with Text",
-            theory: "HTML provides various tags for text content. The most common are <h1> through <h6> for headings, and <p> for paragraphs.",
-            example: "<h1>Main Heading</h1>\n<p>This is a <strong>bold</strong> and <em>italic</em> text.</p>",
-            exercise: "Create an h1 heading that says 'Welcome' and a paragraph below it with some bold text",
-            solution: "<h1>Welcome</h1><p>This is <strong>bold</strong> text</p>",
-            hint: "Use <h1> tags for the heading and <strong> for bold text"
+            title: "Box Model",
+            theory: "The CSS box model is fundamental to layout. Every element has margin, border, padding, and content areas that can be controlled independently.",
+            example: ".box {\n    margin: 10px;\n    padding: 20px;\n    border: 1px solid black;\n    width: 200px;\n}",
+            exercise: "Create a box with 15px padding and a 2px solid blue border",
+            solution: ".box{padding:15px;border:2pxsolidblue;}",
+            hint: "Use padding and border properties"
         },
         3: {
-            title: "Lists & Links",
-            theory: "HTML offers two main types of lists: ordered (<ol>) and unordered (<ul>). Links are created using the <a> tag.",
-            example: "<ul>\n  <li>First item</li>\n  <li>Second item</li>\n</ul>\n<a href='https://example.com'>Visit Example</a>",
-            exercise: "Create an unordered list with two items, and make one of them a link",
-            solution: "<ul><li><a href='#'>First item</a></li><li>Second item</li></ul>",
-            hint: "Start with <ul> and use <li> for each item"
+            title: "Layout & Positioning",
+            theory: "CSS offers various ways to control layout, including Flexbox and Grid. Position properties help place elements exactly where you want them.",
+            example: ".container {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    gap: 20px;\n}",
+            exercise: "Create a flexbox container with centered content",
+            solution: ".container{display:flex;justify-content:center;align-items:center;}",
+            hint: "Use display: flex with justify-content and align-items"
         },
         4: {
-            title: "Images & Media",
-            theory: "Images are added using the <img> tag. The src attribute specifies the image source, and alt provides alternative text.",
-            example: "<img src='image.jpg' alt='Description of image'>\n<figure>\n  <img src='pic.jpg' alt='A picture'>\n  <figcaption>Caption for the image</figcaption>\n</figure>",
-            exercise: "Create an image tag with a source and alt text",
-            solution: "<img src='image.jpg' alt='My image'>",
-            hint: "Use the <img> tag with both src and alt attributes"
+            title: "Responsive Design",
+            theory: "Responsive design ensures websites work well on all devices. Media queries allow you to apply different styles based on screen size or device characteristics.",
+            example: "@media (max-width: 600px) {\n    .container {\n        width: 100%;\n        flex-direction: column;\n    }\n}",
+            exercise: "Write a media query for screens smaller than 768px",
+            solution: "@media(max-width:768px){.container{width:100%;}}",
+            hint: "Use @media with a max-width condition"
         },
         5: {
-            title: "Tables & Forms",
-            theory: "Tables are used to display data in rows and columns. Forms allow users to input data and submit it.",
-            example: "<table>\n  <tr>\n    <td>Cell 1</td>\n    <td>Cell 2</td>\n  </tr>\n</table>",
-            exercise: "Create a simple table with 2 rows and 2 columns",
-            solution: "<table><tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr></table>",
-            hint: "Use <table>, <tr>, and <td> tags"
+            title: "Advanced CSS",
+            theory: "Advanced CSS includes transitions, animations, transforms, and custom properties (variables) for creating dynamic and interactive styles.",
+            example: ".button {\n    transition: all 0.3s ease;\n}\n.button:hover {\n    transform: scale(1.1);\n    background-color: #007bff;\n}",
+            exercise: "Create a hover effect with scale transform",
+            solution: ".element:hover{transform:scale(1.1);}",
+            hint: "Use the transform property with scale()"
         }
     };
 
-    // Add this at the top of your JavaScript file, after the DOM elements
+    // Add notification stack
     let notificationStack = [];
     let notificationCount = 0;
 
-    // Function to save progress to localStorage
-    function saveProgress() {
-        const progressData = {
-            currentModule: currentModule,
-            completedModules: Array.from(completedModules),
-            lastUpdated: new Date().toISOString()
-        };
-
-        // Save to localStorage
-        localStorage.setItem('htmlCourseProgress', JSON.stringify(progressData));
-
-        // Save to Firebase if user is logged in
-        const user = firebase.auth().currentUser;
-        if (user) {
-            firebase.firestore().collection('users').doc(user.uid)
-                .set({
-                    htmlProgress: progressData,
-                    htmlCompleted: completedModules.size === Object.keys(lessons).length
-                }, { merge: true })
-                .catch(error => console.error('Error saving progress:', error));
-        }
-    }
-
-    // Function to load progress from localStorage
+    // Load saved progress
     function loadProgress() {
         // Try to load from Firebase first
         const user = firebase.auth().currentUser;
@@ -198,14 +171,14 @@ document.addEventListener('DOMContentLoaded', function() {
             return firebase.firestore().collection('users').doc(user.uid)
                 .get()
                 .then(doc => {
-                    if (doc.exists && doc.data().htmlProgress) {
-                        const progressData = doc.data().htmlProgress;
+                    if (doc.exists && doc.data().cssProgress) {
+                        const progressData = doc.data().cssProgress;
                         currentModule = progressData.currentModule;
                         completedModules = new Set(progressData.completedModules);
                         return true;
                     } else {
                         // If no Firebase data, try localStorage
-                        const savedProgress = localStorage.getItem('htmlCourseProgress');
+                        const savedProgress = localStorage.getItem('cssCourseProgress');
                         if (savedProgress) {
                             const progressData = JSON.parse(savedProgress);
                             currentModule = progressData.currentModule;
@@ -221,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         } else {
             // If not logged in, use localStorage
-            const savedProgress = localStorage.getItem('htmlCourseProgress');
+            const savedProgress = localStorage.getItem('cssCourseProgress');
             if (savedProgress) {
                 const progressData = JSON.parse(savedProgress);
                 currentModule = progressData.currentModule;
@@ -232,132 +205,192 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Save progress
+    function saveProgress() {
+        const progressData = {
+            currentModule: currentModule,
+            completedModules: Array.from(completedModules),
+            lastUpdated: new Date().toISOString()
+        };
+
+        // Save to localStorage
+        localStorage.setItem('cssCourseProgress', JSON.stringify(progressData));
+
+        // Save to Firebase if user is logged in
+        const user = firebase.auth().currentUser;
+        if (user) {
+            firebase.firestore().collection('users').doc(user.uid)
+                .set({
+                    cssProgress: progressData,
+                    cssCompleted: completedModules.size === Object.keys(lessons).length
+                }, { merge: true })
+                .catch(error => console.error('Error saving progress:', error));
+        }
+    }
+
     // Initialize code editor
     function initializeLesson() {
         const lesson = lessons[currentModule];
-        htmlInput.value = '<!-- Type your HTML here -->';
+        htmlInput.value = '/* Write your CSS here */';
         theoryText.textContent = lesson.theory;
         exampleCode.textContent = lesson.example;
         instructions.textContent = lesson.exercise;
-        resultFrame.innerHTML = '';
+        
+        // Add initial preview content with empty style tag
+        resultFrame.innerHTML = `
+            <style></style>
+            <div class="preview">
+                <p>Sample paragraph</p>
+                <h1>Sample heading</h1>
+                <div class="box">Box model example</div>
+                <div class="container">
+                    <div>Flex item 1</div>
+                    <div>Flex item 2</div>
+                </div>
+                <div class="element">Hover me</div>
+            </div>
+        `;
+        
         updateNavigationButtons();
     }
 
     // Run code functionality
-    runButton.addEventListener('click', function() {
+    runButton?.addEventListener('click', function() {
         const code = htmlInput.value;
         try {
-            resultFrame.innerHTML = code;
-            if (isCorrectSolution(code)) {
+            // Clear previous results and apply the CSS
+            resultFrame.innerHTML = `
+                <style>${code}</style>
+                <div class="preview">
+                    <p>Sample paragraph</p>
+                    <h1>Sample heading</h1>
+                    <div class="box">Box model example</div>
+                    <div class="container">
+                        <div>Flex item 1</div>
+                        <div>Flex item 2</div>
+                    </div>
+                    <div class="element">Hover me</div>
+                </div>
+            `;
+
+            console.log('Original code:', code);
+            
+            // Check if solution is correct
+            const isCorrect = isCorrectSolution(code);
+            console.log('Solution check result:', isCorrect);
+            
+            if (isCorrect) {
                 showSuccess();
             }
         } catch (error) {
+            console.error('Error:', error);
             showError(error);
         }
     });
 
     // Reset code
-    resetButton.addEventListener('click', function() {
-        htmlInput.value = '<!-- Type your HTML here -->';
+    resetButton?.addEventListener('click', function() {
+        htmlInput.value = '/* Write your CSS here */';
         resultFrame.innerHTML = '';
     });
 
-    // Check solution with improved validation
+    // Check solution
     function isCorrectSolution(code) {
-        const lesson = lessons[currentModule];
-        const lowerCode = code.toLowerCase().replace(/\s+/g, '');
+        const normalizedCode = code.toLowerCase()
+            .replace(/\s+/g, '')
+            .replace(/[\n\r]/g, '')
+            .replace(/\/\*.*?\*\//g, '')
+            .replace(/;}/g, '}')
+            .replace(/;/g, '')
+            .trim();
+
+        console.log('Checking normalized code:', normalizedCode);
         
         switch(currentModule) {
-            case 0: // HTML Comments
-                return lowerCode.includes('<!--') && 
-                       lowerCode.includes('-->') && 
-                       lowerCode.includes('myfirsthtmlcomment');
-            case 1: // Document Structure
-                return lowerCode.includes('<!doctypehtml') && 
-                       lowerCode.includes('<html') && 
-                       lowerCode.includes('<head') && 
-                       lowerCode.includes('<title>mypage</title>') && 
-                       lowerCode.includes('</head>') && 
-                       lowerCode.includes('<body');
-            case 2: // Text Formatting
-                return lowerCode.includes('<h1>welcome</h1>') && 
-                       lowerCode.includes('<p') && 
-                       lowerCode.includes('<strong>') && 
-                       lowerCode.includes('</strong>');
-            case 3: // Lists and Links
-                return lowerCode.includes('<ul>') && 
-                       lowerCode.includes('<li>') && 
-                       lowerCode.includes('<a') && 
-                       lowerCode.includes('href=');
-            case 4: // Images and Media
-                return lowerCode.includes('<img') && 
-                       lowerCode.includes('src=') && 
-                       lowerCode.includes('alt=');
-            case 5: // Tables and Forms
-                return lowerCode.includes('<table>') && 
-                       lowerCode.includes('<tr>') && 
-                       lowerCode.includes('<td>');
+            case 0: // CSS Colors
+                const validRedValues = [
+                    'p{color:red}',
+                    'p{color:#ff0000}',
+                    'p{color:#f00}',
+                    'p{color:rgb(255,0,0)}',
+                    'p{color:rgba(255,0,0,1)}',
+                    'p{color:rgb(255,0,0,1)}'
+                ];
+                console.log('Checking against valid values:', validRedValues);
+                const matches = validRedValues.some(valid => 
+                    normalizedCode === valid || 
+                    normalizedCode.replace(/\s+/g, '') === valid
+                );
+                console.log('Matches:', matches);
+                return matches;
+                
+            case 1: // Text Styling
+                return normalizedCode.includes('h1{') &&
+                       normalizedCode.includes('font-family:arial') &&
+                       normalizedCode.includes('font-size:20px') &&
+                       normalizedCode.includes('font-weight:bold');
+                
+            case 2: // Box Model
+                return normalizedCode.includes('.box{') &&
+                       normalizedCode.includes('padding:15px') &&
+                       (
+                           normalizedCode.includes('border:2pxsolidblue') ||
+                           normalizedCode.includes('border:2pxbluesolid')
+                       );
+                
+            case 3: // Flexbox
+                return normalizedCode.includes('.container{') &&
+                       normalizedCode.includes('display:flex') &&
+                       normalizedCode.includes('justify-content:center') &&
+                       normalizedCode.includes('align-items:center');
+                
+            case 4: // Media Queries
+                return normalizedCode.includes('@media(max-width:768px)') &&
+                       normalizedCode.includes('.container{') &&
+                       normalizedCode.includes('width:100%');
+                
+            case 5: // Transforms
+                return normalizedCode.includes('.element:hover{') &&
+                       normalizedCode.includes('transform:scale(1.1)');
+                
             default:
                 return false;
         }
     }
 
-    // Show hint
-    function showHint() {
-        const hint = lessons[currentModule].hint;
-        alert(hint);
-    }
-
-    // Success message with animation
+    // Show success message
     function showSuccess() {
         const notificationId = `notification-${notificationCount++}`;
         const successMsg = document.createElement('div');
         successMsg.className = 'success-message';
         successMsg.id = notificationId;
-        successMsg.style.bottom = `${(notificationStack.length * 90) + 30}px`;
+        successMsg.style.cssText = `
+            position: fixed;
+            bottom: ${(notificationStack.length * 90) + 30}px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            width: 90%;
+            max-width: 500px;
+        `;
         
-        // Check if this is the last module
         const isLastModule = currentModule === Object.keys(lessons).length - 1;
         
         successMsg.innerHTML = `
             <div style="background: #4caf50; color: white; padding: 20px; border-radius: 8px; margin-top: 10px; text-align: center; position: relative;">
-                <button class="close-success" style="
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    background: none;
-                    border: none;
-                    color: white;
-                    font-size: 18px;
-                    cursor: pointer;
-                    padding: 5px;
-                "><i class="fas fa-times"></i></button>
+                <button class="close-success" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 5px;">
+                    <i class="fas fa-times"></i>
+                </button>
                 <i class="fas fa-check-circle" style="font-size: 24px; margin-bottom: 10px;"></i>
                 <h3 style="margin: 10px 0;">Great job! You've completed this module!</h3>
                 ${!isLastModule ? `
-                    <button class="next-exercise" style="
-                        background: white;
-                        color: #4caf50;
-                        border: none;
-                        padding: 12px 24px;
-                        border-radius: 6px;
-                        font-weight: bold;
-                        cursor: pointer;
-                        margin-top: 10px;
-                        transition: all 0.3s ease;
-                    ">Continue to Next Module</button>
+                    <button class="next-exercise" style="background: white; color: #4caf50; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: all 0.3s ease;">
+                        Continue to Next Module
+                    </button>
                 ` : `
-                    <button class="view-certificate" style="
-                        background: white;
-                        color: #4caf50;
-                        border: none;
-                        padding: 12px 24px;
-                        border-radius: 6px;
-                        font-weight: bold;
-                        cursor: pointer;
-                        margin-top: 10px;
-                        transition: all 0.3s ease;
-                    ">View Your Certificate</button>
+                    <button class="view-certificate" style="background: white; color: #4caf50; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: all 0.3s ease;">
+                        View Your Certificate
+                    </button>
                 `}
             </div>
         `;
@@ -365,39 +398,51 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(successMsg);
         notificationStack.push(notificationId);
 
-        // Mark current module as completed and update UI
+        // Mark current module as completed
         completedModules.add(currentModule);
-        updateProgress();
-        updateModuleStatus();
         
-        // Update the current module's icon to checkmark
+        // Update the current module's node
         const currentNode = skillNodes[currentModule];
-        currentNode.classList.add('completed');
-        currentNode.querySelector('i').className = 'fas fa-check-circle';
-        currentNode.querySelector('i').style.color = '#4caf50';
-
-        // Unlock and update icon for next module
-        if (currentModule < skillNodes.length - 1) {
-            const nextNode = skillNodes[currentModule + 1];
-            nextNode.classList.remove('locked');
-            nextNode.querySelector('i').className = 'fas fa-circle';
+        if (currentNode) {
+            currentNode.classList.remove('locked');
+            currentNode.classList.add('completed');
+            const icon = currentNode.querySelector('i');
+            if (icon) {
+                icon.className = 'fas fa-check-circle';
+                icon.style.color = '#4caf50';
+            }
         }
         
-        // Add close button functionality
+        // Unlock next module if it exists
+        if (currentModule < skillNodes.length - 1) {
+            const nextNode = skillNodes[currentModule + 1];
+            if (nextNode) {
+                nextNode.classList.remove('locked');
+                const icon = nextNode.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-circle';
+                    icon.style.color = ''; // Reset color
+                }
+            }
+        }
+        
+        // Update progress bar and module status
+        updateProgress();
+        updateModuleStatus();
+
+        // Add event listeners for buttons
         const closeBtn = successMsg.querySelector('.close-success');
         closeBtn.addEventListener('click', () => {
             removeNotification(notificationId);
         });
         
         if (isLastModule) {
-            // Add certificate button functionality
             const certificateBtn = successMsg.querySelector('.view-certificate');
             certificateBtn.addEventListener('click', () => {
                 removeNotification(notificationId);
                 generateCertificate();
             });
         } else {
-            // Add next module button functionality
             const nextExerciseBtn = successMsg.querySelector('.next-exercise');
             nextExerciseBtn.addEventListener('click', () => {
                 removeNotification(notificationId);
@@ -407,15 +452,31 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // If this completes all modules, show the congratulations message
+        // Show congratulations if all modules are completed
         if (completedModules.size === Object.keys(lessons).length) {
             setTimeout(() => {
                 showCongratulations();
             }, 1000);
         }
+
+        // Save progress after marking module as complete
+        saveProgress();
+
+        // Update Firebase with completion status if this was the last module
+        if (completedModules.size === Object.keys(lessons).length) {
+            const user = firebase.auth().currentUser;
+            if (user) {
+                firebase.firestore().collection('users').doc(user.uid)
+                    .set({
+                        cssCompleted: true,
+                        cssCompletedDate: new Date().toISOString()
+                    }, { merge: true })
+                    .catch(error => console.error('Error updating completion status:', error));
+            }
+        }
     }
 
-    // Add this function to handle notification removal
+    // Remove notification
     function removeNotification(notificationId) {
         const index = notificationStack.indexOf(notificationId);
         if (index > -1) {
@@ -426,7 +487,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             setTimeout(() => {
                 element.remove();
-                // Reposition remaining notifications
                 notificationStack.forEach((id, idx) => {
                     const notification = document.getElementById(id);
                     if (notification) {
@@ -437,7 +497,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Add this function to show the congratulations message
+    // Show congratulations message
     function showCongratulations() {
         const notificationId = `notification-${notificationCount++}`;
         const congratsMsg = document.createElement('div');
@@ -447,43 +507,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         congratsMsg.innerHTML = `
             <div style="background: #4caf50; color: white; padding: 20px; border-radius: 8px; margin-top: 10px; text-align: center; position: relative;">
-                <button class="close-success" style="
-                    position: absolute;
-                    top: 10px;
-                    right: 10px;
-                    background: none;
-                    border: none;
-                    color: white;
-                    font-size: 18px;
-                    cursor: pointer;
-                    padding: 5px;
-                "><i class="fas fa-times"></i></button>
+                <button class="close-success" style="position: absolute; top: 10px; right: 10px; background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 5px;">
+                    <i class="fas fa-times"></i>
+                </button>
                 <i class="fas fa-trophy" style="font-size: 32px; margin-bottom: 15px;"></i>
-                <h3 style="margin: 10px 0;">Congratulations! You've completed the HTML course!</h3>
-                <button class="view-certificate" style="
-                    background: white;
-                    color: #4caf50;
-                    border: none;
-                    padding: 12px 24px;
-                    border-radius: 6px;
-                    font-weight: bold;
-                    cursor: pointer;
-                    margin-top: 15px;
-                    transition: all 0.3s ease;
-                ">View Your Certificate</button>
+                <h3 style="margin: 10px 0;">Congratulations! You've completed the CSS course!</h3>
+                <button class="view-certificate" style="background: white; color: #4caf50; border: none; padding: 12px 24px; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; transition: all 0.3s ease;">
+                    View Your Certificate
+                </button>
             </div>
         `;
         
         document.body.appendChild(congratsMsg);
         notificationStack.push(notificationId);
 
-        // Add close button functionality
         const closeBtn = congratsMsg.querySelector('.close-success');
         closeBtn.addEventListener('click', () => {
             removeNotification(notificationId);
         });
 
-        // Add certificate button functionality
         const certificateBtn = congratsMsg.querySelector('.view-certificate');
         certificateBtn.addEventListener('click', () => {
             removeNotification(notificationId);
@@ -504,98 +546,82 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => errorMsg.remove(), 3000);
     }
 
-    // Update progress with animation
-    function updateProgress(increment) {
-        currentProgress = Math.min(currentProgress + increment, 100);
-        progressBar.style.width = currentProgress + '%';
-        progressText.textContent = currentProgress + '% Complete';
-        
-        // Animate progress bar
+    // Update progress
+    function updateProgress() {
+        const percentPerModule = 16.7; // 100% divided by 6 modules
+        const progress = Math.round(completedModules.size * percentPerModule);
+        progressBar.style.width = progress + '%';
+        progressText.textContent = progress + '% Complete';
         progressBar.style.transition = 'width 0.5s ease-in-out';
     }
 
     // Navigation between lessons
-    nextButton.addEventListener('click', () => {
+    nextButton?.addEventListener('click', () => {
         if (currentModule < skillNodes.length - 1) {
             const nextNode = skillNodes[currentModule + 1];
-            
-            // Only proceed if the next module is not locked
             if (!nextNode.classList.contains('locked')) {
-                // Don't mark as completed, just move to next module
                 loadModule(currentModule + 1);
-                
-                // Update UI without adding checkmark
                 updateModuleStatus();
             }
         }
     });
 
-    prevButton.addEventListener('click', () => {
+    prevButton?.addEventListener('click', () => {
         if (currentModule > 0) {
-            updateActiveNode(currentModule - 1);
+            loadModule(currentModule - 1);
         }
     });
 
+    // Update navigation buttons
     function updateNavigationButtons() {
-        prevButton.style.visibility = currentModule === 0 ? 'hidden' : 'visible';
-        nextButton.style.visibility = currentModule === Object.keys(lessons).length - 1 ? 'hidden' : 'visible';
+        if (prevButton && nextButton) {
+            prevButton.style.visibility = currentModule === 0 ? 'hidden' : 'visible';
+            nextButton.style.visibility = currentModule === Object.keys(lessons).length - 1 ? 'hidden' : 'visible';
+        }
     }
 
-    // Update active node with animation
-    function updateActiveNode(newIndex) {
-        skillNodes[currentModule].classList.remove('active');
-        skillNodes[newIndex].classList.add('active');
-        currentModule = newIndex;
-        updateNavigationButtons();
-        updateLessonContent(currentModule);
-    }
-
-    // Update lesson content
-    function updateLessonContent(index) {
-        const lesson = lessons[index];
-        document.querySelector('.lesson-header h2').textContent = lesson.title;
-        document.querySelector('.theory-section p').textContent = lesson.theory;
-        document.querySelector('.instructions').textContent = lesson.exercise;
-        htmlInput.value = '<!-- Type your HTML here -->';
-        resultFrame.innerHTML = '';
-    }
-
-    // Mobile navigation
-    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    mobileNavToggle.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-        this.innerHTML = navLinks.classList.contains('active') ? 
-            '<i class="fas fa-times"></i>' : 
-            '<i class="fas fa-bars"></i>';
-    });
-
-    // Update the progression system
+    // Update module status
     function updateModuleStatus() {
         const nodes = document.querySelectorAll('.skill-node');
+        
+        // First reset all nodes to locked state
         nodes.forEach((node, index) => {
-            // Reset all nodes first
             node.classList.remove('completed', 'active');
             node.classList.add('locked');
-            node.querySelector('i').className = 'fas fa-lock';
+            const icon = node.querySelector('i');
+            if (icon) {
+                icon.className = 'fas fa-lock';
+                icon.style.color = '';
+            }
+        });
 
+        // Then update based on progress
+        nodes.forEach((node, index) => {
+            if (index === 0 && completedModules.size === 0) {
+                // Only unlock first module if no progress
+                node.classList.remove('locked');
+                const icon = node.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-circle';
+                }
+            } else if (completedModules.has(index - 1)) {
+                // Unlock if previous module is completed
+                node.classList.remove('locked');
+                const icon = node.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-circle';
+                }
+            }
+
+            // Mark completed modules
             if (completedModules.has(index)) {
-                // Mark completed modules with green checkmark
                 node.classList.remove('locked');
                 node.classList.add('completed');
-                node.querySelector('i').className = 'fas fa-check-circle';
-                node.querySelector('i').style.color = '#4caf50'; // Make checkmark green
-                
-                // Unlock next module
-                if (nodes[index + 1]) {
-                    nodes[index + 1].classList.remove('locked');
-                    nodes[index + 1].querySelector('i').className = 'fas fa-circle';
+                const icon = node.querySelector('i');
+                if (icon) {
+                    icon.className = 'fas fa-check-circle';
+                    icon.style.color = '#4caf50';
                 }
-            } else if (index === 0 || completedModules.has(index - 1)) {
-                // Unlock current module if it's first or previous is completed
-                node.classList.remove('locked');
-                node.querySelector('i').className = 'fas fa-circle';
             }
 
             // Mark current module as active
@@ -605,46 +631,55 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Load module
     function loadModule(moduleIndex) {
         if (moduleIndex < 0 || moduleIndex >= Object.keys(lessons).length) return;
         
         const nodes = document.querySelectorAll('.skill-node');
-        const targetNode = nodes[moduleIndex];
-        
-        // Only allow loading unlocked modules
-        if (!targetNode.classList.contains('locked')) {
-            // Remove active class from all nodes
-            nodes.forEach(node => node.classList.remove('active'));
-            
-            // Add active class to current module
-            targetNode.classList.add('active');
-            currentModule = moduleIndex;
-            
-            // Update content
-            const lesson = lessons[moduleIndex];
+        if (nodes.length === 0) {
+            console.error('No skill nodes found');
+            return;
+        }
+
+        // Update current module
+        currentModule = moduleIndex;
+
+        // Update all nodes' states
+        nodes.forEach((node, index) => {
+            node.classList.remove('active');
+            if (index === currentModule) {
+                node.classList.add('active');
+            }
+        });
+
+        // Update content
+        const lesson = lessons[moduleIndex];
+        if (lesson) {
             document.querySelector('.lesson-header h2').textContent = lesson.title;
             document.querySelector('.theory-text').textContent = lesson.theory;
             document.querySelector('.example-code').textContent = lesson.example;
             document.querySelector('.instructions').textContent = lesson.exercise;
-            htmlInput.value = '<!-- Type your HTML here -->';
-            resultFrame.innerHTML = '';
-            
-            updateNavigationButtons();
-            saveProgress();
+            document.querySelector('.html-input').value = '/* Write your CSS here */';
+            document.querySelector('.result-frame').innerHTML = `
+                <style></style>
+                <div class="preview">
+                    <p>Sample paragraph</p>
+                    <h1>Sample heading</h1>
+                    <div class="box">Box model example</div>
+                    <div class="container">
+                        <div>Flex item 1</div>
+                        <div>Flex item 2</div>
+                    </div>
+                    <div class="element">Hover me</div>
+                </div>
+            `;
         }
+
+        updateNavigationButtons();
+        saveProgress();
     }
 
-    // Add click handlers for modules
-    document.querySelectorAll('.skill-node').forEach(node => {
-        node.addEventListener('click', () => {
-            const moduleIndex = parseInt(node.dataset.module);
-            if (!node.classList.contains('locked')) {
-                loadModule(moduleIndex);
-            }
-        });
-    });
-
-    // Initialize modules
+    // Initialize
     async function initialize() {
         // Get all skill nodes
         const nodes = document.querySelectorAll('.skill-node');
@@ -714,32 +749,12 @@ document.addEventListener('DOMContentLoaded', function() {
         updateModuleStatus();
     }
 
-    // Initialize the page
-    initialize();
+    // Initialize the course
+    initialize().then(() => {
+        console.log('Course initialized with user progress');
+    });
 
-    // Remove XP from lesson stats in the header
-    const lessonStats = document.querySelector('.lesson-stats');
-    if (lessonStats) {
-        lessonStats.innerHTML = `
-            <span><i class="fas fa-clock"></i> 15 mins</span>
-        `;
-    }
-
-    // Update the progress calculation function
-    function calculateProgress() {
-        const percentPerModule = 16.7; // 100% divided by 6 modules
-        return Math.round(completedModules.size * percentPerModule);
-    }
-
-    // Update the progress display function
-    function updateProgress() {
-        const newProgress = calculateProgress();
-        progressBar.style.width = newProgress + '%';
-        progressText.textContent = newProgress + '% Complete';
-        progressBar.style.transition = 'width 0.5s ease-in-out';
-    }
-
-    // Add this function to generate the certificate
+    // Generate certificate
     function generateCertificate() {
         const modal = document.createElement('div');
         modal.style.cssText = `
@@ -756,11 +771,10 @@ document.addEventListener('DOMContentLoaded', function() {
             padding: 20px;
         `;
 
-        // Separate the certificate content from the buttons
         const certificateHTML = `
             <div class="certificate-container">
                 <div class="certificate" style="
-                    background: url('images/background.png') center center/cover no-repeat, white;
+                    background: url('../images/Background.png') center center/cover no-repeat, white;
                     border-radius: 10px;
                     padding: 30px;
                     text-align: center;
@@ -815,11 +829,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             <i class="fas fa-code"></i>
                         </div>
 
-                        <h1 style="
-                            color: #008fa2; 
-                            font-size: 32px; 
-                            margin-bottom: 15px;
-                        ">Certificate of Completion</h1>
+                        <h1 style="color: #008fa2; font-size: 32px; margin-bottom: 15px;">
+                            Certificate of Completion
+                        </h1>
                         
                         <p style="font-size: 16px; margin-bottom: 20px;">This certifies that</p>
                         
@@ -835,17 +847,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         <p style="font-size: 16px; margin-bottom: 20px;">has successfully completed the</p>
                         
-                        <h3 style="
-                            color: #008fa2; 
-                            font-size: 24px; 
-                            margin-bottom: 30px;
-                        ">HTML Fundamentals Course</h3>
+                        <h3 style="color: #008fa2; font-size: 24px; margin-bottom: 30px;">
+                            CSS Fundamentals Course
+                        </h3>
                         
-                        <p style="
-                            font-size: 16px; 
-                            margin-bottom: 40px; 
-                            color: #666;
-                        ">Demonstrating proficiency in HTML structure, elements, and web content creation</p>
+                        <p style="font-size: 16px; margin-bottom: 40px; color: #666;">
+                            Demonstrating proficiency in CSS styling, layout, and responsive design
+                        </p>
                         
                         <div style="
                             display: flex;
@@ -863,11 +871,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 ">
                                     ${localStorage.getItem('userName') || 'Student'}
                                 </div>
-                                <p style="
-                                    font-size: 12px;
-                                    color: #666;
-                                    margin: 0;
-                                ">Student</p>
+                                <p style="font-size: 12px; color: #666; margin: 0;">Student</p>
                             </div>
                             
                             <div style="text-align: center;">
@@ -881,11 +885,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 ">
                                     Blaine Oler
                                 </div>
-                                <p style="
-                                    font-size: 12px;
-                                    color: #666;
-                                    margin: 0;
-                                ">CEO, CodeSpark</p>
+                                <p style="font-size: 12px; color: #666; margin: 0;">CEO, CodeSpark</p>
                             </div>
                         </div>
 
@@ -896,7 +896,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
 
-                <!-- Separate buttons container -->
                 <div class="certificate-buttons" style="
                     display: flex;
                     justify-content: center;
@@ -938,7 +937,6 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.innerHTML = certificateHTML;
         document.body.appendChild(modal);
 
-        // Add event listeners
         const editNameBtn = modal.querySelector('.edit-name-btn');
         const closeCertBtn = modal.querySelector('.close-cert-btn');
         
@@ -958,7 +956,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Create a separate function for the name dialog
+    // Show name dialog
     function showNameDialog() {
         const modal = document.createElement('div');
         modal.style.cssText = `
@@ -1022,35 +1020,52 @@ document.addEventListener('DOMContentLoaded', function() {
             nameInput.value = currentName;
         }
 
-        // Handle save button
         modal.querySelector('#saveName').addEventListener('click', () => {
             const name = nameInput.value.trim();
             if (name) {
                 localStorage.setItem('userName', name);
                 modal.remove();
-                generateCertificate(); // Regenerate certificate with new name
+                generateCertificate();
             }
         });
 
-        // Handle cancel button
         modal.querySelector('#cancelName').addEventListener('click', () => {
             modal.remove();
-            generateCertificate(); // Go back to certificate
+            generateCertificate();
         });
 
-        // Close when clicking outside
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 modal.remove();
-                generateCertificate(); // Go back to certificate
+                generateCertificate();
             }
         });
     }
 
-    // Add this function to check for user name when Firebase auth state changes
+    // Check for user name when Firebase auth state changes
     firebase.auth().onAuthStateChanged((user) => {
         if (user && user.displayName) {
             localStorage.setItem('userName', user.displayName);
         }
     });
+
+    // Add this helper function to check if elements exist
+    function checkRequiredElements() {
+        const required = [
+            '.skill-node',
+            '.lesson-header h2',
+            '.theory-text',
+            '.example-code',
+            '.instructions',
+            '.html-input',
+            '.result-frame'
+        ];
+
+        required.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (!element) {
+                console.error(`Missing required element: ${selector}`);
+            }
+        });
+    }
 }); 

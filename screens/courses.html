@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeSpark - Courses</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/HTMLstyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -19,21 +20,11 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="nav-links">
-                <a href="index.html">
-                    <i class="fas fa-home"></i> Home
-                </a>
-                <a href="courses.html">
-                    <i class="fas fa-book"></i> Courses
-                </a>
-                <a href="projects.html">
-                    <i class="fas fa-project-diagram"></i> Projects
-                </a>
-                <a href="community.html">
-                    <i class="fas fa-users"></i> Community
-                </a>
-                <a href="about.html">
-                    <i class="fas fa-info-circle"></i> About
-                </a>
+                <a href="../index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="courses.html"><i class="fas fa-book"></i> Courses</a>
+                <a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="community.html"><i class="fas fa-users"></i> Community</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
                 <a href="#" id="loginBtn" class="auth-btn">
                     <i class="fas fa-sign-in-alt"></i> Login
                 </a>
@@ -42,13 +33,14 @@
                 </a>
                 <div class="profile-container" id="profileContainer" style="display: none;">
                     <button class="profile-btn" id="profileBtn">
-                        <i class="fas fa-user-circle"></i> Profile
+                        <i class="fas fa-user-circle"></i>
+                        <span>Profile</span>
                     </button>
                     <div class="profile-dropdown" id="profileDropdown">
-                        <a href="#" class="dropdown-item">
+                        <a href="profile.html" class="dropdown-item">
                             <i class="fas fa-user"></i> My Profile
                         </a>
-                        <a href="#" class="dropdown-item">
+                        <a href="settings.html" class="dropdown-item">
                             <i class="fas fa-cog"></i> Settings
                         </a>
                         <hr class="dropdown-divider">
@@ -74,12 +66,17 @@
         <div class="content-wrapper">
             <!-- Login/Signup Form (shown when not authenticated) -->
             <div id="authContainer" class="auth-container">
-                <h2>Please Login or Sign Up</h2>
-                <p>Access to courses requires authentication</p>
+                <h2>Welcome to CodeSpark</h2>
+                <p>Please login or sign up to access our courses</p>
                 <div class="auth-buttons">
-                    <button onclick="showLoginForm()">Login</button>
-                    <button onclick="showSignupForm()">Sign Up</button>
+                    <button onclick="showLoginForm()">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <button onclick="showSignupForm()">
+                        <i class="fas fa-user-plus"></i> Sign Up
+                    </button>
                 </div>
+                <div id="errorMessage" class="error-message"></div>
             </div>
 
             <!-- Course Content (shown when authenticated) -->
@@ -87,22 +84,22 @@
                 <h2>Available Courses</h2>
                 <div class="courses-grid">
                     <div class="course-card">
-                        <img src="HTMLCourse.png" alt="HTML Course">
+                        <img src="../HTMLCourse.png" alt="HTML Course">
                         <h3>HTML Fundamentals</h3>
                         <p>Learn the basics of HTML5</p>
                         <a href="html-course.html" class="start-course-btn">Start Learning</a>
                     </div>
                     <div class="course-card">
-                        <img src="CSSCourse.png" alt="CSS Course">
+                        <img src="../CSSCourse.png" alt="CSS Course">
                         <h3>CSS Mastery</h3>
                         <p>Master modern CSS techniques</p>
-                        <button>Start Learning</button>
+                        <a href="css-course.html" class="start-course-btn">Start Learning</a>
                     </div>
                     <div class="course-card">
-                        <img src="JSCourse.png" alt="JavaScript Course">
+                        <img src="../JSCourse.png" alt="JavaScript Course">
                         <h3>JavaScript Essentials</h3>
                         <p>Build interactive web applications</p>
-                        <button>Start Learning</button>
+                        <button class="coming-soon-btn" disabled>Coming Soon</button>
                     </div>
                 </div>
             </div>
@@ -132,9 +129,16 @@
         </div>
     </footer>
 
-    <!-- Replace the Firebase SDK links at the bottom of the file -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-    <script src="courses.js"></script>
+    <!-- Replace the existing Firebase scripts section -->
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+    <!-- Your Scripts -->
+    <script src="../firebase-config.js"></script>
+    <script src="../auth.js"></script>
+    <script src="../courses.js"></script>
 </body>
 </html> 
