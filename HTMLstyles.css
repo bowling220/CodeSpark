@@ -45,52 +45,47 @@ header {
 
 /* Course Content Layout */
 .course-content-wrapper {
-    max-width: 1400px;
-    margin: 30px auto;
-    padding: 0 20px;
     display: flex;
     gap: 30px;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 30px;
+    min-height: calc(100vh - 100px); /* Account for header height */
 }
 
 /* Sidebar Styles */
 .course-sidebar {
     width: 300px;
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
     background: white;
-    border-radius: 15px;
+    border-radius: 12px;
     padding: 25px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.user-info {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 25px;
-}
-
-.user-streak, .xp-points {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 10px 0;
-}
-
-.user-streak i {
-    color: #ff6b6b;
-}
-
-.xp-points i {
-    color: #ffd43b;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 30px;
+    height: fit-content;
 }
 
 .skill-tree {
-    margin: 30px 0;
+    margin: 0 0 30px 0;
 }
 
 .skill-nodes {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    position: relative;
+}
+
+.skill-nodes::before {
+    content: '';
+    position: absolute;
+    left: 21px;
+    top: 40px;
+    bottom: 40px;
+    width: 2px;
+    background: #ddd;
+    z-index: 0;
 }
 
 .skill-node {
@@ -101,6 +96,24 @@ header {
     border-radius: 10px;
     background: #f8f9fa;
     transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.skill-node.locked {
+    background: #f1f1f1;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.skill-node.locked::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -15px;
+    width: 2px;
+    height: 15px;
+    background: #ddd;
 }
 
 .skill-node.completed {
@@ -114,19 +127,29 @@ header {
 .skill-node.active {
     background: #e3f2fd;
     border: 2px solid #2196f3;
+    opacity: 1;
 }
 
 .skill-node.active i {
     color: #2196f3;
 }
 
+.skill-node i {
+    font-size: 1.2rem;
+}
+
+.skill-node.locked i {
+    color: #999;
+}
+
 /* Main Content Area */
 .course-main-content {
     flex: 1;
     background: white;
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-width: 0; /* Prevent content overflow */
 }
 
 .lesson-header {
@@ -141,15 +164,16 @@ header {
     color: #666;
 }
 
-.theory-section, .practice-section {
-    margin: 30px 0;
+.theory-section {
+    margin-bottom: 30px;
 }
 
 .example-box {
     background: #f8f9fa;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 8px;
     margin: 20px 0;
+    overflow-x: auto; /* For long code examples */
 }
 
 code {
@@ -162,20 +186,20 @@ code {
 }
 
 .code-editor {
-    margin: 20px 0;
+    margin: 25px 0;
 }
 
 .html-input {
     width: 100%;
-    height: 200px;
-    padding: 15px;
+    min-height: 200px;
+    padding: 20px;
     font-family: 'Consolas', monospace;
-    font-size: 14px;
-    border: 1px solid #ddd;
+    font-size: 15px;
+    border: 1px solid #dee2e6;
     border-radius: 8px;
+    resize: vertical;
     background: #2d2d2d;
     color: #fff;
-    resize: vertical;
 }
 
 .run-code {
@@ -195,10 +219,17 @@ code {
 }
 
 .preview-pane {
-    background: #f8f9fa;
-    padding: 20px;
+    background: white;
+    border: 1px solid #dee2e6;
     border-radius: 8px;
+    padding: 20px;
     margin-top: 20px;
+}
+
+.result-frame {
+    width: 100%;
+    min-height: 200px;
+    border: none;
 }
 
 .lesson-navigation {
@@ -217,9 +248,7 @@ code {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-weight: 600;
 }
 
 .prev-lesson:hover, .next-lesson:hover {
@@ -267,5 +296,80 @@ code {
         background: #008fa2;
         padding: 20px;
         z-index: 1000;
+    }
+}
+
+/* Update the success message styles */
+.success-message {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    max-width: 400px;
+    width: 100%;
+    animation: slideIn 0.3s ease-out;
+    transition: all 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.close-success:hover {
+    transform: scale(1.1);
+}
+
+/* Add styles for stacked notifications */
+.success-message + .success-message {
+    margin-bottom: 90px;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .course-content-wrapper {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .course-content-wrapper {
+        flex-direction: column;
+    }
+
+    .course-sidebar {
+        width: 100%;
+        position: static;
+        margin-bottom: 20px;
+    }
+
+    .course-main-content {
+        width: 100%;
+    }
+}
+
+/* Add print styles for the certificate */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .certificate, .certificate * {
+        visibility: visible;
+    }
+    .certificate {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 40px !important;
+    }
+    .certificate button {
+        display: none;
     }
 } 
