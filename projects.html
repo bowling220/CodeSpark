@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeSpark - Projects</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav class="nav-container">
+            <div class="logo">
+                <h1><i class="fas fa-code"></i> CodeSpark</h1>
+            </div>
+            <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="courses.html"><i class="fas fa-book"></i> Courses</a>
+                <a href="projects.html"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="community.html"><i class="fas fa-users"></i> Community</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="projects-hero">
+            <h1>Hands-On Coding Projects</h1>
+            <p>Build real-world projects to strengthen your skills</p>
+        </div>
+
+        <section class="project-filters">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="beginner">Beginner</button>
+            <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+            <button class="filter-btn" data-filter="advanced">Advanced</button>
+        </section>
+
+        <section class="projects-grid">
+            <div class="project-card" data-category="beginner">
+                <img src="https://via.placeholder.com/300x200?text=Portfolio+Website" alt="Portfolio Project">
+                <div class="project-content">
+                    <h3>Portfolio Website</h3>
+                    <p>Build a responsive portfolio website using HTML and CSS</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                    <button class="start-project-btn">Start Project</button>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="intermediate">
+                <img src="https://via.placeholder.com/300x200?text=Todo+App" alt="Todo App">
+                <div class="project-content">
+                    <h3>Todo App</h3>
+                    <p>Create a dynamic todo list with JavaScript</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <button class="start-project-btn">Start Project</button>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="advanced">
+                <img src="https://via.placeholder.com/300x200?text=Weather+App" alt="Weather App">
+                <div class="project-content">
+                    <h3>Weather App</h3>
+                    <p>Build a weather app using APIs and async JavaScript</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">API</span>
+                    </div>
+                    <button class="start-project-btn">Start Project</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 CodeSpark. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+</body>
+</html> 
